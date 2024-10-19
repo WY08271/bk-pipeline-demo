@@ -9,11 +9,11 @@ steps:
   - label: ":docker: Build Docker Image"
     command: "scripts/run-tests.sh"
     agents:
-      Name: "Yue"
+      queue: "eks"
 
   - block: "Manual Approval to Deploy"
 
   - label: ":docker: Build Docker Image"
     command: "scripts/run-tests.sh"
     agents:
-      Name: "Yue"
+      queue: "eks"
