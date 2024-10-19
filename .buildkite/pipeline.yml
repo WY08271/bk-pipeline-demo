@@ -1,0 +1,19 @@
+steps:
+  - label: ":shell: Run Tests"
+    command: "scripts/run-tests.sh"
+    agents:
+      queue: "eks"
+
+  - wait: ~
+
+  - label: ":docker: Build Docker Image"
+    command: "scripts/run-tests.sh"
+    agents:
+      Name: "Yue"
+
+  - block: "Manual Approval to Deploy"
+
+  - label: ":docker: Build Docker Image"
+    command: "scripts/run-tests.sh"
+    agents:
+      Name: "Yue"
