@@ -1,15 +1,17 @@
 steps:
-  - label: ":shell: Run Tests"
-    command: "scripts/run-tests.sh"
+  - label: ":shell: Create S3 bucket"
+    command: "scripts/create-s3.sh"
     agents:
       queue: "eks"
 
   - wait: ~
 
-  - label: ":docker: Build Docker Image"
-    command: "scripts/run-tests.sh"
+  - label: ":building_construction: Update HTML to S3"
+    command: "scripts/upload-html.sh"
     agents:
       queue: "eks"
+    env:
+      S3_BUCKET: "buildkite-demo"
 
   - block: "Manual Approval to Deploy"
 
